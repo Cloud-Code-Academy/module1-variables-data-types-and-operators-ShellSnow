@@ -36,10 +36,10 @@ public with sharing class VariablesDataTypesOperators {
     public static Integer addition(Integer a, Integer b) {
         if (a == null || b == null) {
             return null;
-        } else {
-            return a + b;
         }
+        return a + b;
     }
+
     /**
      * Question 2
      * Performs subtraction of two numbers.
@@ -49,10 +49,7 @@ public with sharing class VariablesDataTypesOperators {
      * @return The difference between the two numbers.
      */
     public static Integer subtraction(Integer a, Integer b) {
-        // Subtract b from a and store the result in a variable
-        Integer difference = a - b ;
-        // Return the difference
-        return difference;
+        return a - b;
     }
     
     /**
@@ -64,10 +61,7 @@ public with sharing class VariablesDataTypesOperators {
      * @return The product of the two numbers.
      */
     public static Integer multiplication(Integer a, Integer b) {
-        // Multiply a by b and store the result in a variable
-        Integer product = a * b;
-        // Return the product
-        return product;
+        return a * b;
     }
     
     /**
@@ -80,16 +74,12 @@ public with sharing class VariablesDataTypesOperators {
      * @return The quotient of the division, or 0 if the denominator is zero.
      */
     public static Decimal division(Integer a, Integer b) {
-        // Check if the denominator is zero
         if (b == 0) {
-            return 0;
+            return 0; // Return 0 to avoid division by zero error
         }
-        // Perform the division and store the result in a variable
-        Decimal quotient = Decimal.valueOf(a) / Decimal.valueOf(b);
-        // Return the quotient
-        return quotient;
+        return Decimal.valueOf(a) / Decimal.valueOf(b);
     }
-    
+
     /**
      * Question 5
      * Checks if a number is even.
@@ -101,10 +91,12 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the number is even, False otherwise.
      */
     public static Boolean isEven(Integer num) {
-        // Check if the number is even using the Math.mod method
-        return Math.mod(num, 2) == 0;
+    if (num == null) {
+        return null;
     }
-    
+    return (num / 2) * 2 == num;
+    }
+
     /**
      * Question 6
      * Checks if a number is positive.
@@ -113,10 +105,10 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the number is positive, False otherwise.
      */
     public static Boolean isPositive(Integer num) {
-        // Check if the number is positive using Math.sign
-        return Math.sign(num) == 1;
+        // Check if the number is positive
+        return num != null && num > 0;
     }
-    
+
     /**
      * Question 7
      * Concatenates two strings.
@@ -126,8 +118,8 @@ public with sharing class VariablesDataTypesOperators {
      * @return The concatenated string.
      */
     public static String concatenateStrings(String str1, String str2) {
-        // Concatenate str1 and str2 using the + operator
-        return str1 + str2;
+    // Concatenate str1 and str2
+    return str1 + str2;
     }
     
     /**
@@ -142,11 +134,10 @@ public with sharing class VariablesDataTypesOperators {
      * @return The complete sentence as a single String.
      */
     public static String createSentence(String noun, String verb, String endingPunctuation) {
-        // Construct the sentence using the string concatenation operator (+)
-        String sentence = 'The ' + noun + ' is ' + verb + endingPunctuation;
-        return sentence;
+        // Construct the sentence using string concatenation
+        return 'The ' + noun + ' is ' + verb + endingPunctuation;
     }
-    
+
     /**
      * Question 9
      * Checks if a date is in the past.
@@ -157,10 +148,11 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the date is in the past, False otherwise.
      */
     public static Boolean isDateInPast(Date dt) {
-        // Get the current date
-        Date today = Date.today();
-        //Check if the provided date is < today's date and return true if it is
-        return dt < today;
+    // Get the current date
+    Date today = Date.today();
+    
+    // Check if the provided date is before today's date
+    return dt < today;
     }
     
     /**
@@ -173,30 +165,31 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the date is today or in the future, False otherwise.
      */
     public static Boolean isDateTodayOrFuture(Date dt) {
-        //Get today's date
+        // Get the current date
         Date today = Date.today();
-        //Check if the provided date is > today's date and return true if it is
-        return dt > today;
+        
+        // Check if the provided date is today or in the future
+        return dt >= today;
     }
-    
+
     /**
      * Question 11
      * Converts the number of minutes to milliseconds.
      * The conversion factor from minutes to milliseconds is a constant of 60000.
      * Formula: Milliseconds = minutes * 60000
-     * Example: convertMinutestoMilliseconds(1) should return 60000
+     * Example: convertMinutesToMilliseconds(1) should return 60000
      * @param minutes The number of minutes.
      * @return The number of milliseconds equivalent to the given number of minutes.
      */
-    public static Integer convertMinutestoMilliseconds(Integer minutes) {
+    public static Integer convertMinutesToMilliseconds(Integer minutes) {
         // Define the constant for the conversion factor from minutes to milliseconds
-        final Integer conversionFactor = 60000;
+        final Integer millisecondsPerMinute = 60000;  // Updated variable name to camelCase
         
-        // Multiply the minutes by the conversion factor
-        Integer totalMilliseconds = minutes * conversionFactor;
+        // Calculate the number of milliseconds
+        Integer milliseconds = minutes * millisecondsPerMinute;
         
         // Return the calculated milliseconds
-        return totalMilliseconds;
+        return milliseconds;
     }
     
     /**
@@ -210,20 +203,16 @@ public with sharing class VariablesDataTypesOperators {
      * @return The average of the three numbers.
      */
     public static Double averageOfThreeNumbers(Integer a, Integer b, Integer c) {
-        //Calculate the (Sum of Numbers) and (Total Numbers)
-        //You can get the sum of three integers using the + operator
-        //You can get the total number of integers using the + operator
-        //Then you can divide the result of sum of integers by the total number of integers
-        //You can cast the result of division into an Integer using the (Integer) operator
-        Integer sumOfNumbers = a + b + c;
-        Integer totalNumbers = 3;
-        //Calculate the average by dividing the sum of numbers by the total number of numbers
-        //Then return the average as a Double
-        //Unlike integers, which are whole numbers, a Double can represent numbers with decimal points.
-        return (Double) sumOfNumbers / totalNumbers;
+        // Calculate the sum of the three numbers
+        Integer sum = a + b + c;
         
+        // Calculate the average by dividing the sum by the total number of numbers (which is 3)
+        Double average = (Double) sum / 3;
+        
+        // Return the calculated average
+        return average;
     }
-    
+
     /**
      * Question 13
      * Adjusts the order of operations in an arithmetic expression to produce a desired result.
@@ -236,26 +225,45 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer adjustOrderOfOperations1(Integer a, Integer b, Integer c) {
         // Add parentheses around the addition operation so that it is performed before multiplication
-        Integer result = a + b * c;
-        // Return the result of the expression
+        Integer result = (a + b) * c;
+    
+        // Return the result
         return result;
     }
-    
+     /**
+     * Question 14
+     * Modifies the expression to adhere to PEMDAS rules in order to change its result.
+     * @return The result of the expression after modifications.
+     */
+    public static Integer adjustOrderOfOperations2() {
+        // Add parentheses in the below expression to change the result.
+        // The result of the expression as it is right now is 43. 
+        // You should add parentheses so that the result of the expression becomes 8.
+        Integer answer = 48 - (15 + 5) * 2;
+
+        // Return the result
+        return answer;
+    }
+
     /**
      * Question 15
      * Adjusts the order of operations in an arithmetic expression to produce a desired result.
-     * In this case, parentheses are added to the expression (a * b - c) / d + e to ensure that
-     * multiplication and subtraction are performed before division, which in turn is performed
+     * In this case, parentheses are added to the expression (a * b - c) / d + e to ensure that 
+     * multiplication and subtraction are performed before division, which in turn is performed 
      * before addition.
-     * Example: complexOrderOfOperations(new MathOperands(1, 2, 3, 4, 5)) should return 4.5
-     * @param operands An object containing the five numbers (a, b, c, d, e).
+     * Example: adjustOrderOfOperations3(1, 2, 3, 4, 5) should return 4.5
+     * @param a The first number.
+     * @param b The second number.
+     * @param c The third number.
+     * @param d The fourth number.
+     * @param e The fifth number.
      * @return The result of the adjusted arithmetic expression.
      */
-    public static Double complexOrderOfOperations(MathOperands operands) {
-        // Add parentheses around the multiplication and subtraction operations so that they are performed before division and addition
-        Double result = (operands.a * operands.b) - operands.c / (Double) operands.d + operands.e;
-        
-        // Return the result of the adjusted arithmetic expression
+    public static Double complexOrderOfOperations(Integer a, Integer b, Integer c, Integer d, Integer e) {
+        // Adjust the order of operations as specified
+        Double result = ((a * b) - c) / d + e;
+    
+        // Return the result of the expression
         return result;
     }
     
@@ -267,7 +275,7 @@ public with sharing class VariablesDataTypesOperators {
      * @return The temperature in Celsius equivalent to the given Fahrenheit temperature.
      */
     public static Double convertFahrenheitToCelsius(Double fahrenheit) {
-        // Define the constants for the formula
+        // Define the constants for the formula using camelCase
         final Double subtractFactor = 32.0;
         final Double multiplyFactor = 5.0;
         final Double divideFactor = 9.0;
@@ -289,19 +297,19 @@ public with sharing class VariablesDataTypesOperators {
      * @return The quotient as a casted (round down) Integer.
      */
     public static Integer performDivisionAndCast(Double a, Double b) {
-        // Perform the division and cast (round down) off the result.
+        // Perform the division
         Double divisionResult = a / b;
-        
-        // Write the code for type casting the divisionResult to an Integer
+    
+        // Cast the result to an Integer, which will round it down
         Integer roundedResult = divisionResult.intValue();
-        
+    
         // Return the rounded result
         return roundedResult;
     }
-    
-    /**
+
+        /**
      * Question 18
-     * Calculate the weekly and monthly paycheck based on hourly rate and number of hours.
+     * Calculate the weekly paycheck based on hourly rate and number of hours.
      * Weekly Paycheck is calculated by the formula: rate multiplied by hours.
      * Example: calculateWeeklyPaycheck(10.0, 40.0) should return 400.0
      * @param hourlyRate The rate of pay per hour.
@@ -309,12 +317,14 @@ public with sharing class VariablesDataTypesOperators {
      * @return A Decimal representing the weekly paycheck.
      */
     public static Decimal calculateWeeklyPaycheck(Decimal hourlyRate, Double numberOfHours) {
-        // Calculate the weekly paycheck using the formula: rate multiplied by hours
-        Decimal weeklyPaycheck = hourlyRate * Decimal.valueOf(numberOfHours);
-        // Return the weekly paycheck
+        // Convert the number of hours from Double to Decimal
+        Decimal hoursAsDecimal = Decimal.valueOf(numberOfHours);
+        // Calculate the weekly paycheck using the multiplication operator
+        Decimal weeklyPaycheck = hourlyRate * hoursAsDecimal;
+        // Return the calculated weekly paycheck
         return weeklyPaycheck;
     }
-    
+
     /**
      * Question 19
      * Calculate the weekly and monthly paycheck based on hourly rate and number of hours.
@@ -326,13 +336,19 @@ public with sharing class VariablesDataTypesOperators {
      * @return A Decimal representing the monthly paycheck.
      */
     public static Decimal calculateMonthlyPaycheck(Decimal hourlyRate, Double numberOfHours) {
-        // Calculate the monthly paycheck using the formula: weekly paycheck multiplied by 4
-        Decimal monthlyPaycheck = calculateWeeklyPaycheck(hourlyRate, numberOfHours) * 4;
+        // Convert the Double to Decimal explicitly
+        Decimal hoursAsDecimal = Decimal.valueOf(numberOfHours);
+        
+        // Calculate the weekly paycheck using the multiplication operator
+        Decimal weeklyPaycheck = hourlyRate * hoursAsDecimal;
+        
+        // Calculate the monthly paycheck by multiplying the weekly paycheck by 4 using the multiplication operator
+        Decimal monthlyPaycheck = weeklyPaycheck * 4;
         
         // Return the calculated monthly paycheck
         return monthlyPaycheck;
     }
-
+    
     /**
      * Question 20
      * Calculates the total cost based on price per unit, number of units, and a sales tax rate.
@@ -344,19 +360,21 @@ public with sharing class VariablesDataTypesOperators {
      * @return The total cost after applying the sales tax.
      */
     public static Decimal calculateTotalCost(Decimal pricePerUnit, Integer numberOfUnits, Decimal salesTaxRate) {
-        // Null checks to ensure valid inputs
-        if (pricePerUnit == null || numberOfUnits == null || salesTaxRate == null) {
-            return null;
-        }
-    
-        // Calculate the subtotal by multiplying pricePerUnit by numberOfUnits
-        Decimal subtotal = pricePerUnit.multiply(Decimal.valueOf(numberOfUnits));
+        // Convert numberOfUnits to Decimal explicitly
+        Decimal unitsAsDecimal = Decimal.valueOf(numberOfUnits);
         
-        // Calculate the total cost by applying the sales tax rate to the subtotal
-        Decimal totalCost = subtotal.multiply(Decimal.valueOf(1).add(salesTaxRate));
-    
+        // Calculate the subtotal using the multiplication operator
+        Decimal v1 = pricePerUnit * unitsAsDecimal;
+        Decimal subtotal = v1;
+        
+        // Add one to the sales tax rate to prepare for multiplication
+        Decimal taxMultiplier = 1 + salesTaxRate;  // Using the addition operator for simplicity
+        
+        // Calculate the total cost using the multiplication operator
+        Decimal totalCost = subtotal * taxMultiplier;
+        
         // Return the calculated total cost
         return totalCost;
     }
-
+    
 }
