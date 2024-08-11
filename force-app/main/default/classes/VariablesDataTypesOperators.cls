@@ -1,27 +1,29 @@
 /**
- * This is the VariablesDataTypesOperators class, part of the Developer Kickstart Module 1 curriculum 
- * at Cloud Code Academy. This class serves as an introduction to the basic elements of Apex programming 
+ * This is the VariablesDataTypesOperators class, part of the Developer Kickstart Module 1 curriculum
+ * at Cloud Code Academy. This class serves as an introduction to the basic elements of Apex programming
  * including variables, data types, and operators.
- * 
- * This class is an essential tool for beginner developers who are just starting their journey in Salesforce 
+ *
+ * This class is an essential tool for beginner developers who are just starting their journey in Salesforce
  * development. It covers all the foundational elements necessary to understand and write Apex code effectively.
- * 
+ *
  * Topics covered in this class include:
  * - Understanding different data types in Apex such as Integer, Decimal, Double, String, Boolean, etc.
  * - Understanding how to declare and use variables in Apex.
- * - Understanding how to use various types of operators in Apex including arithmetic operators, 
+ * - Understanding how to use various types of operators in Apex including arithmetic operators,
  *   comparison operators, logical operators, and more.
  *
- * Users of this class can expect to gain a strong foundation in Apex programming and be prepared for 
+ * Users of this class can expect to gain a strong foundation in Apex programming and be prepared for
  * more advanced topics in Salesforce development.
- * 
+ *
  * If statements are not specifically covered in the lesson this module, but review module 2 flow control section for an overview if needed.
- * Resources: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_if_else.htm 
- * 
- * @author Your Name
+ * Resources: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_if_else.htm
+ *
+ * @author Shelley Snow - Cloud Code Academy
+ * @version 1.0
  */
 
 public with sharing class VariablesDataTypesOperators {
+    
     /**
      * Question 1
      * Performs addition of two numbers.
@@ -31,22 +33,28 @@ public with sharing class VariablesDataTypesOperators {
      * @param b The second number.
      * @return The sum of the two numbers, or null if either number is null.
      */
-    public static Integer addition(Integer a, Integer b) {  
-        return null; // Replace null with the variable you used to store the result
+    public static Integer addition(Integer a, Integer b) {
+        if (a == null || b == null) {
+            return null;
+        } else {
+            return a + b;
+        }
     }
-
     /**
      * Question 2
      * Performs subtraction of two numbers.
-     * Example: subtraction(1, 2) should return -1
+     * Example: subtraction(1, 2) should return -1.
      * @param a The first number.
      * @param b The second number.
      * @return The difference between the two numbers.
      */
     public static Integer subtraction(Integer a, Integer b) {
-        return null; // Replace null with the variable you used to store the result
+        // Subtract b from a and store the result in a variable
+        Integer difference = a - b ;
+        // Return the difference
+        return difference;
     }
-
+    
     /**
      * Question 3
      * Performs multiplication of two numbers.
@@ -56,47 +64,59 @@ public with sharing class VariablesDataTypesOperators {
      * @return The product of the two numbers.
      */
     public static Integer multiplication(Integer a, Integer b) {
-        return null; // Replace null with the variable you used to store the result
+        // Multiply a by b and store the result in a variable
+        Integer product = a * b;
+        // Return the product
+        return product;
     }
-
+    
     /**
      * Question 4
      * Performs division of two numbers.
      * If the denominator is zero, return 0 to avoid division by zero error.
-     * Example: division(6, 3) should return 2
+     * Example: division(6, 3) should return 2.
      * @param a The numerator.
      * @param b The denominator.
      * @return The quotient of the division, or 0 if the denominator is zero.
      */
     public static Decimal division(Integer a, Integer b) {
-        return null; // Replace null with the variable you used to store the result
+        // Check if the denominator is zero
+        if (b == 0) {
+            return 0;
+        }
+        // Perform the division and store the result in a variable
+        Decimal quotient = Decimal.valueOf(a) / Decimal.valueOf(b);
+        // Return the quotient
+        return quotient;
     }
-
+    
     /**
      * Question 5
      * Checks if a number is even.
      * Example: isEven(2) should return true
      * This concept is not specifically covered in the content this week, but you can use the Math class and the modulus function to understand if the number is even or odd.
-     * The modulus function returns the remainder of a division operation, think about how you can use this to determine if a number is even or odd. 
+     * The modulus function returns the remainder of a division operation, think about how you can use this to determine if a number is even or odd.
      * Resources: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_math.htm#apex_System_Math_mod
      * @param num The number to check.
      * @return True if the number is even, False otherwise.
      */
     public static Boolean isEven(Integer num) {
-        return null; // Replace null with the variable you used to store the result
+        // Check if the number is even using the Math.mod method
+        return Math.mod(num, 2) == 0;
     }
-
+    
     /**
      * Question 6
      * Checks if a number is positive.
-     * Example: isPositive(2) should return true
+     * Example: isPositive(2) should return true.
      * @param num The number to check.
-     * @return true if the number is positive, false otherwise.
+     * @return True if the number is positive, False otherwise.
      */
     public static Boolean isPositive(Integer num) {
-        return null; // Replace null with the variable you used to store the result
+        // Check if the number is positive using Math.sign
+        return Math.sign(num) == 1;
     }
-
+    
     /**
      * Question 7
      * Concatenates two strings.
@@ -106,37 +126,43 @@ public with sharing class VariablesDataTypesOperators {
      * @return The concatenated string.
      */
     public static String concatenateStrings(String str1, String str2) {
-        return null; // Replace null with the variable you used to store the result
+        // Concatenate str1 and str2 using the + operator
+        return str1 + str2;
     }
-
-	/**
+    
+    /**
      * Question 8
-	 * Constructs a sentence by concatenating a given noun, verb, and ending punctuation.
-	 * The sentence is structured to begin with 'The', followed by the noun, then 'is', the verb, and finally the ending punctuation.
-	 * Example: createSentence('cat', 'jumping', '!') should return 'The cat is jumping!'
-	 * Example: createSentence('bird', 'flying', '.') should return 'The bird is flying.'
-	 * @param noun The noun or subject of the sentence.
-	 * @param verb The verb or action of the sentence.
-	 * @param endingPunctuation The punctuation to end the sentence, e.g., '.', '!', '?'
-	 * @return The complete sentence as a single String.
-	 */
-	public static String createSentence(String noun, String verb, String endingPunctuation) {
-		return null; // Replace null with the variable you used to store the result
-	}
-
+     * Constructs a sentence by concatenating a given noun, verb, and ending punctuation.
+     * The sentence is structured to begin with 'The', followed by the noun, then 'is', the verb, and finally the ending punctuation.
+     * Example: createSentence('cat', 'jumping', '!') should return 'The cat is jumping!'
+     * Example: createSentence('bird', 'flying', '.') should return 'The bird is flying.'
+     * @param noun The noun or subject of the sentence.
+     * @param verb The verb or action of the sentence.
+     * @param endingPunctuation The punctuation to end the sentence, e.g., '.', '!', '?'
+     * @return The complete sentence as a single String.
+     */
+    public static String createSentence(String noun, String verb, String endingPunctuation) {
+        // Construct the sentence using the string concatenation operator (+)
+        String sentence = 'The ' + noun + ' is ' + verb + endingPunctuation;
+        return sentence;
+    }
+    
     /**
      * Question 9
      * Checks if a date is in the past.
-     * Example: isDateInPast(Date.newInstance(2019, 1, 1)) should return true
+     * Example: isDateInPast(Date.newInstance(2019, 1, 1)) should return true.
      * The concept of getting the current date is not specifically covered in the content this week, but you can use the Date class to get the current date.
      * Resources: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_date.htm#apex_System_Date_today
      * @param dt The date to check.
      * @return True if the date is in the past, False otherwise.
      */
     public static Boolean isDateInPast(Date dt) {
-        return null; // Replace null with the variable you used to store the result
+        // Get the current date
+        Date today = Date.today();
+        //Check if the provided date is < today's date and return true if it is
+        return dt < today;
     }
-
+    
     /**
      * Question 10
      * Checks if a date is today or in the future.
@@ -147,24 +173,32 @@ public with sharing class VariablesDataTypesOperators {
      * @return True if the date is today or in the future, False otherwise.
      */
     public static Boolean isDateTodayOrFuture(Date dt) {
-        return null; // Replace null with the variable you used to store the result
+        //Get today's date
+        Date today = Date.today();
+        //Check if the provided date is > today's date and return true if it is
+        return dt > today;
     }
-
+    
     /**
      * Question 11
      * Converts the number of minutes to milliseconds.
      * The conversion factor from minutes to milliseconds is a constant of 60000.
      * Formula: Milliseconds = minutes * 60000
-     * Example: convertMinutesToMilliseconds(1) should return 60000
+     * Example: convertMinutestoMilliseconds(1) should return 60000
      * @param minutes The number of minutes.
      * @return The number of milliseconds equivalent to the given number of minutes.
      */
-    public static Integer convertMinutesToMilliseconds(Integer minutes) {
-        Integer MILLISECONDS_PER_MINUTE = null; // Make this value a constant
-        Integer milliseconds;
-        return null; // Replace null with the variable you used to store the result
-    }    
-
+    public static Integer convertMinutestoMilliseconds(Integer minutes) {
+        // Define the constant for the conversion factor from minutes to milliseconds
+        final Integer conversionFactor = 60000;
+        
+        // Multiply the minutes by the conversion factor
+        Integer totalMilliseconds = minutes * conversionFactor;
+        
+        // Return the calculated milliseconds
+        return totalMilliseconds;
+    }
+    
     /**
      * Question 12
      * Calculates the average of three numbers.
@@ -176,9 +210,20 @@ public with sharing class VariablesDataTypesOperators {
      * @return The average of the three numbers.
      */
     public static Double averageOfThreeNumbers(Integer a, Integer b, Integer c) {
-        return null; // Replace null with the variable you used to store the result
+        //Calculate the (Sum of Numbers) and (Total Numbers)
+        //You can get the sum of three integers using the + operator
+        //You can get the total number of integers using the + operator
+        //Then you can divide the result of sum of integers by the total number of integers
+        //You can cast the result of division into an Integer using the (Integer) operator
+        Integer sumOfNumbers = a + b + c;
+        Integer totalNumbers = 3;
+        //Calculate the average by dividing the sum of numbers by the total number of numbers
+        //Then return the average as a Double
+        //Unlike integers, which are whole numbers, a Double can represent numbers with decimal points.
+        return (Double) sumOfNumbers / totalNumbers;
+        
     }
-
+    
     /**
      * Question 13
      * Adjusts the order of operations in an arithmetic expression to produce a desired result.
@@ -192,45 +237,28 @@ public with sharing class VariablesDataTypesOperators {
     public static Integer adjustOrderOfOperations1(Integer a, Integer b, Integer c) {
         // Add parentheses around the addition operation so that it is performed before multiplication
         Integer result = a + b * c;
-
-        // Return the result
-        return null; // Replace null with the variable you used to store the result
+        // Return the result of the expression
+        return result;
     }
-
-    /**
-     * Question 14
-     * Modifies the expression to adhere to PEMDAS rules in order to change its result.
-     * @return The result of the expression after modifications.
-     */
-    public static Integer adjustOrderOfOperations2() {
-        // Add parentheses in the below expression to change the result.
-        // The result of the expression as it is right now is 43. 
-        // You should add parentheses so that the result of the expression becomes 8.
-        Integer answer = 48 - 15 + 5 * 2;
-        return null; // Replace null with the variable you used to store the result
-    }
-
+    
     /**
      * Question 15
      * Adjusts the order of operations in an arithmetic expression to produce a desired result.
-     * In this case, parentheses are added to the expression (a * b - c) / d + e to ensure that 
-     * multiplication and subtraction are performed before division, which in turn is performed 
+     * In this case, parentheses are added to the expression (a * b - c) / d + e to ensure that
+     * multiplication and subtraction are performed before division, which in turn is performed
      * before addition.
-     * Example: adjustOrderOfOperations3(1, 2, 3, 4, 5) should return 4.5
-     * @param a The first number.
-     * @param b The second number.
-     * @param c The third number.
-     * @param d The fourth number.
-     * @param e The fifth number.
+     * Example: complexOrderOfOperations(new MathOperands(1, 2, 3, 4, 5)) should return 4.5
+     * @param operands An object containing the five numbers (a, b, c, d, e).
      * @return The result of the adjusted arithmetic expression.
      */
-    public static Double complexOrderOfOperations(Integer a, Integer b, Integer c, Integer d, Integer e) {
+    public static Double complexOrderOfOperations(MathOperands operands) {
         // Add parentheses around the multiplication and subtraction operations so that they are performed before division and addition
-        Double result = a * b - c / (Double) d + e;
-
-        return null; // Replace null with the variable you used to store the result
+        Double result = (operands.a * operands.b) - operands.c / (Double) operands.d + operands.e;
+        
+        // Return the result of the adjusted arithmetic expression
+        return result;
     }
-
+    
     /**
      * Question 16
      * Converts the temperature from Fahrenheit to Celsius.
@@ -239,15 +267,18 @@ public with sharing class VariablesDataTypesOperators {
      * @return The temperature in Celsius equivalent to the given Fahrenheit temperature.
      */
     public static Double convertFahrenheitToCelsius(Double fahrenheit) {
-        final Double SUBTRACT_FACTOR = 32.0;
-        final Double MULTIPLY_FACTOR = 5.0;
-        final Double DIVIDE_FACTOR = 9.0;
-    
-        return null; // Replace null with the variable you used to store the result
+        // Define the constants for the formula
+        final Double subtractFactor = 32.0;
+        final Double multiplyFactor = 5.0;
+        final Double divideFactor = 9.0;
+        
+        // Apply the formula to convert Fahrenheit to Celsius
+        Double celsius = (fahrenheit - subtractFactor) * multiplyFactor / divideFactor;
+        
+        // Return the calculated Celsius temperature
+        return celsius;
     }
-
     
-
     /**
      * Question 17
      * Performs division and returns the result as a casted Integer.
@@ -259,13 +290,15 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Integer performDivisionAndCast(Double a, Double b) {
         // Perform the division and cast (round down) off the result.
-        Double divisionResult = null;
-
+        Double divisionResult = a / b;
+        
         // Write the code for type casting the divisionResult to an Integer
-        Integer roundedResult = null;
-        return null; // Replace null with the variable you used to store the result
+        Integer roundedResult = divisionResult.intValue();
+        
+        // Return the rounded result
+        return roundedResult;
     }
-
+    
     /**
      * Question 18
      * Calculate the weekly and monthly paycheck based on hourly rate and number of hours.
@@ -277,9 +310,11 @@ public with sharing class VariablesDataTypesOperators {
      */
     public static Decimal calculateWeeklyPaycheck(Decimal hourlyRate, Double numberOfHours) {
         // Calculate the weekly paycheck using the formula: rate multiplied by hours
-        return null; // Replace null with the variable you used to store the result
+        Decimal weeklyPaycheck = hourlyRate * Decimal.valueOf(numberOfHours);
+        // Return the weekly paycheck
+        return weeklyPaycheck;
     }
-
+    
     /**
      * Question 19
      * Calculate the weekly and monthly paycheck based on hourly rate and number of hours.
@@ -291,7 +326,11 @@ public with sharing class VariablesDataTypesOperators {
      * @return A Decimal representing the monthly paycheck.
      */
     public static Decimal calculateMonthlyPaycheck(Decimal hourlyRate, Double numberOfHours) {
-        return null; // Replace null with the variable you used to store the result
+        // Calculate the monthly paycheck using the formula: weekly paycheck multiplied by 4
+        Decimal monthlyPaycheck = calculateWeeklyPaycheck(hourlyRate, numberOfHours) * 4;
+        
+        // Return the calculated monthly paycheck
+        return monthlyPaycheck;
     }
 
     /**
@@ -305,6 +344,19 @@ public with sharing class VariablesDataTypesOperators {
      * @return The total cost after applying the sales tax.
      */
     public static Decimal calculateTotalCost(Decimal pricePerUnit, Integer numberOfUnits, Decimal salesTaxRate) {
-        return null; // Replace null with the variable you used to store the result
+        // Null checks to ensure valid inputs
+        if (pricePerUnit == null || numberOfUnits == null || salesTaxRate == null) {
+            return null;
+        }
+    
+        // Calculate the subtotal by multiplying pricePerUnit by numberOfUnits
+        Decimal subtotal = pricePerUnit.multiply(Decimal.valueOf(numberOfUnits));
+        
+        // Calculate the total cost by applying the sales tax rate to the subtotal
+        Decimal totalCost = subtotal.multiply(Decimal.valueOf(1).add(salesTaxRate));
+    
+        // Return the calculated total cost
+        return totalCost;
     }
+
 }
